@@ -1,0 +1,25 @@
+<body class="bg-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5 text-dark" style="padding: 60px">
+                    <div class="text-center">
+                        <img src="~/img/logo.png" alt="" width="120">
+                        <h1>INICIO DE SESIÓN</h1>                        
+                        <form asp-controller="Auth" asp-action="Login" method="post">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="correo" class="form-control" id="floatingInput" name="correo" placeholder="name@example.com">
+                                <label for="floatingInput" class="text-dark">Ingresar  usuario</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                                <label class="text-dark" for="floatingPassword">Ingresar contraseña</label>
+                            </div>
+                            <button class="btn btn-lg btn-primary form-control mt-4" type="submit">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

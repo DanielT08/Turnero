@@ -74,7 +74,7 @@
                     <div class="card-body p-1 ">
                         <div class="d-flex justify-content-center align-items-center mb-5 p-2">
                             <p class="turnod me-4">Turnos disponibles</p>
-                            <p class="turnoe ms-2">Turnos en espera: 29</p>
+                            <p class="turnoe ms-2">Turnos en espera: @ViewBag.total</p>
                         </div>
                         <table class="table table-striped ">
                             <thead>
@@ -83,6 +83,9 @@
                                     <th>Pendientes</th>
                                 </tr>
                             </thead>
+                       @*      @foreach(var categoria in ViewBag.Categorias){
+                                <p>@categoria.Categoria</p>
+                            } *@
                             <tbody>
                                 <tr>
                                     <td>Pago de facturas</td>

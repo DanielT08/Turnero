@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-sm-6">
-    <h5>@ViewData["informacion"]</h5>
+    <h5>@ViewData["tipo"] - @ViewData["documento"] </h5>
   </div>
   <div class="col-sm-6">
-    <h5 class="marginf">24 abril 2024 08:20:56 AM</h5>
+    <h5 class="marginf">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</h5>
   </div>
 </div>
 <div>
@@ -13,7 +13,7 @@
   @foreach (var categoria in Model)
   {
 
-    <a asp-controller="Home" asp-action="Turno" asp-route-siglas="@categoria.Siglas" class="card bg-info text-white nav-link">
+    <a asp-controller="Home" asp-action="CrearTurno" asp-route-siglas="@categoria.Siglas" class="card bg-info text-white nav-link">
       <div class="cards card-body">
         <h5 class="card-title">@categoria.Nombre</h5>
 

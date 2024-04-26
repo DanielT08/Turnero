@@ -4,6 +4,7 @@ using CSharp.Models;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.Data;
+using Turnero.Models;
 
 namespace CSharp.Controllers;
 
@@ -24,19 +25,21 @@ public class HomeController : Controller
         return View();
     }
 
-    //Laura
+    //Angelica
     public async Task<IActionResult> Categorias(string tipo, string documento)
     {
-        var info=tipo + "-" + documento;
-        /* ViewData["informacion"]=info; */
-        Response.Cookies.Append("info",info);
-        ViewData["informacion"]=info;
+        var Tipo=tipo;
+        ViewData["tipo"]=Tipo;
+        var Documento=documento;
+        ViewData["documento"]=Documento;
+        Response.Cookies.Append("tipo",tipo);
+        Response.Cookies.Append("documento",documento);
         return View(await _context.Categorias.ToListAsync());
     }
 
 
     //David 
-    public async Task<IActionResult> Turno(string siglas)
+    public async Task<IActionResult> CrearTurno(string siglas)
     {
         string seleccion = "";
         string turno = "";
@@ -45,9 +48,15 @@ public class HomeController : Controller
 
         turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
 
-        ViewBag.Turno = turno;
-        var a = HttpContext.Request.Cookies["info"];
-        ViewData["informacion"]=a;
+        ViewData["turno"] = turno;
+        var tipo = HttpContext.Request.Cookies["tipo"];
+        ViewData["tipo"]=tipo;
+        var documento = HttpContext.Request.Cookies["documento"];
+        ViewData["documento"]=documento;
+        var Fecha = DateTime.Now.Date.ToString("dd/MM/yyyy");
+        ViewData["fecha"]=Fecha;
+        var Hora = DateTime.Now.ToString("HH:mm:ss");
+        ViewData["hora"]=Hora;
         return View();
     }
 
@@ -55,6 +64,17 @@ public class HomeController : Controller
     public IActionResult Turnos()
     {
         return View();
+    } 
+     public IActionResult Pausar()
+    {
+        return View();
     }
-
+    //Angelica 
+    [HttpPost]
+    public async Task<IActionResult> Asignar(Turno turno)
+    {
+        _context.Turnos.Add(turno);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
 }

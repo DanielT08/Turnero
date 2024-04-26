@@ -14,13 +14,13 @@ using Data;
 
 namespace CSharp.Controllers;
 
-public class AsistentesController : Controller
+public class AuthController : Controller
 {
 
     //Angelica
     public readonly TurneroContext _context;
 
-    public AsistentesController(TurneroContext context)
+    public AuthController(TurneroContext context)
     {
         _context = context;
     }
@@ -46,35 +46,9 @@ public class AsistentesController : Controller
             var main = new ClaimsPrincipal(asistenteIdentity);
             HttpContext.Response.Cookies.Append("Asistente_Id", asistente.Id.ToString());
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, main);
-            return RedirectToAction("Principal", "Asistentes");
+            return RedirectToAction("Index", "Home");
         }
         ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos");
         return View("Index");
     }
-    
-    public IActionResult Todos()
-    {
-        return View();
-    }
-
-    public IActionResult Pendientes()
-    {
-        return View();
-    }
-    public IActionResult Finalizados()
-    {
-        return View();
-    }
-    public IActionResult Principal()
-    {
-        /* var resultTurnos = await _context.Turnos.ToListAsync();
-        ViewBag.Total = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Count();  */
-        //ViewBag.Pendientes = resultTurnos.Where(t => t.Estado.Equals("Pendientes")).Count();
-
-       /*  ViewBag.Categorias = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Select(c => new {c.Categoria}).GroupBy(e=> e.Categoria).ToList(); */
-
-        return View();
-    }
 }
-
-
