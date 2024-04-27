@@ -12,6 +12,7 @@
                     <input type="hidden" asp-for="TipoDocumento" id="tipo" name="TipoDocumento" class="card-text " value='@ViewData["tipo"]' />
                     <input type="hidden" asp-for="Identificacion" id="documento" name="Identificacion" class="card-text" value='@ViewData["documento"]' /><br>
                     <input type="hidden" asp-for="Ficho" id="turno" name="ficho" class="card-text" value='@ViewData["turno"]' />
+                    <input type="hidden" asp-for="Categoria" id="turno" name="categoria" class="card-text" value='@ViewData["categoria"]' />
                     <p class="card-text">@ViewData["tipo"] - @ViewData["documento"]</p>
                     <h1 class="card-title">@ViewData["turno"]</h1>
                     <p class="card-text">@ViewData["fecha"]</p>
