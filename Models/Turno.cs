@@ -13,7 +13,7 @@ namespace Turnero.Models
         public int Id { get; set; }
         public string? Categoria {get; set;}
         public string? TipoDocumento {get; set;}
-        public string? Identificacion {get; set;}
+        public string? identificacion {get; set;}
         public string? Ficho {get; set;}
         public DateTime? FechaEntrada {get; set;}
         public DateTime? FechaAtendido {get; set;}
