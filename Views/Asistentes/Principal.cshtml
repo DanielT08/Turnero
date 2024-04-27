@@ -71,21 +71,31 @@
              </div>
 
             <div class="col-4 tablero mt-5">
-                    <div class="card-body p-1 ">
+                    <div class="card-body p-1">
                         <div class="d-flex justify-content-center align-items-center mb-5 p-2">
                             <p class="turnod me-4">Turnos disponibles</p>
                             <p class="turnoe ms-2">Turnos en espera: @ViewBag.cantidad</p>
                         </div>
-                        <table class="table table-striped ">
-                                @foreach(var categoria in ViewBag.Categorias){
-                                    <p>@categoria.Categoria</p>
-                                    <p>@categoria.Total</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Servicio</th>
+                                    <th>Pendientes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var categoria in ViewBag.Categorias)
+                                {
+                                    <tr>
+                                        <td>@categoria.Categoria :</td>
+                                        <td style="text-align:center;">@categoria.Total</td>
+                                    </tr>
                                 }
+                            </tbody>
                         </table>
                     </div>                
             </div>
 
-        </div>
+        </div>  
     </div>
 </div>
-

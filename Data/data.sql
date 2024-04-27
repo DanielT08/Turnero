@@ -1,1 +1,1 @@
-DELETE FROM `Turnos` where id = 29;
+DELETE FROM `Turnos` where id = 29; 
