@@ -9,17 +9,17 @@
             <div class="col-8  m-2">
                 <div class="d-flex justify-content-between p-2 m-4">
                     <a type="button" class="btn option btn-sm btn-primary shadow" asp-controller="Asistentes" asp-action="Principal">Gestión de turnos y citas</a>
-                    <a type="button" class="btn option2 btn-sm btn-outline-dark shadow" asp-controller="Asistentes" asp-action=""> Historial de turno</a>
+                    <a type="button" class="btn option2 btn-sm btn-outline-dark shadow" asp-controller="Asistentes" asp-action="Todos"> Historial de turno</a>
                 </div>
 
                 <div class="d-flex justify-content-between p-2">
-                    <a type="button" class="btn opcion1 btn-info" asp-controller="Asistentes" asp-action="">Llamar turno especifico</a>
-                    <a type="button" class="btn opcion1 btn-success" asp-controller="Asistentes" asp-action="">Llamar</a>
+                    <a type="button" class="btn opcion1 btn-info" asp-controller="Asistentes" asp-action="Pendientes">Llamar turno especifico</a>
+                    <a type="button" class="btn opcion1 btn-success" asp-controller="Asistentes" asp-action="Pendientes">Llamar</a>
                 </div>
 
                 <div class="d-flex justify-content-between p-2">
                     <a type="button" class="btn opcion1 btn-warning" asp-controller="Home" asp-action="Index">Crear</a>
-                    <a type="button" class="btn opcion1 btn-danger" asp-controller="Asistentes" asp-action="">Reusar</a>
+                    <a type="button" class="btn opcion1 btn-danger" asp-controller="Asistentes" asp-action="Finalizados">Reusar</a>
                 </div>
 
                 <div class="d-flex justify-content-center p-2">
@@ -71,44 +71,31 @@
              </div>
 
             <div class="col-4 tablero mt-5">
-                    <div class="card-body p-1 ">
+                    <div class="card-body p-1">
                         <div class="d-flex justify-content-center align-items-center mb-5 p-2">
                             <p class="turnod me-4">Turnos disponibles</p>
-                            <p class="turnoe ms-2">Turnos en espera: @ViewBag.total</p>
+                            <p class="turnoe ms-2">Turnos en espera: @ViewBag.cantidad</p>
                         </div>
-                        <table class="table table-striped ">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Servicio</th>
                                     <th>Pendientes</th>
                                 </tr>
                             </thead>
-                       @*      @foreach(var categoria in ViewBag.Categorias){
-                                <p>@categoria.Categoria</p>
-                            } *@
                             <tbody>
-                                <tr>
-                                    <td>Pago de facturas</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Solicitud de citas</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>Autorización medicamentos</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>Información general</td>
-                                    <td>5</td>
-                                </tr>
+                                @foreach (var categoria in ViewBag.Categorias)
+                                {
+                                    <tr>
+                                        <td>@categoria.Categoria :</td>
+                                        <td style="text-align:center;">@categoria.Total</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>                
             </div>
 
-        </div>
+        </div>  
     </div>
 </div>
-

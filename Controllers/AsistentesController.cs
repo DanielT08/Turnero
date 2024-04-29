@@ -65,13 +65,24 @@ public class AsistentesController : Controller
     {
         return View();
     }
-    public IActionResult Principal()
+    public async Task <IActionResult> Principal()
     {
-        /* var resultTurnos = await _context.Turnos.ToListAsync();
-        ViewBag.Total = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Count();  */
-        //ViewBag.Pendientes = resultTurnos.Where(t => t.Estado.Equals("Pendientes")).Count();
 
-       /*  ViewBag.Categorias = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Select(c => new {c.Categoria}).GroupBy(e=> e.Categoria).ToList(); */
+        int cantidad = _context.Turnos.Count();
+        ViewBag.Cantidad = cantidad;
+
+        // var result = await _context.Turnos.ToListAsync();
+        // return Json(cantidad);
+        // ViewBag.Total = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Count();
+        // ViewBag.Pendientes = resultTurnos.Where(t => t.Estado.Equals("Pendientes")).Count();
+
+        var result =  await _context.Turnos.ToListAsync();
+        ViewBag.Categorias = result.Where(t => t.Estado.Equals("Pendiente"))
+                                        .GroupBy(t => t.Categoria)
+                                        .Select(g => new { Categoria = g.Key, Total = g.Count() })
+                                        .ToList();
+
+
 
         return View();
     }

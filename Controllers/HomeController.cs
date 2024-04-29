@@ -41,12 +41,10 @@ public class HomeController : Controller
     //David 
     public async Task<IActionResult> CrearTurno(string siglas)
     {
-        string seleccion = "";
         string turno = "";
         var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
-        int contador = result.Contador +1;
-
-        turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
+        result.Contador = result.Contador+1;
+        turno = siglas+"-"+(result.Contador < 10 ? "00"+result.Contador: "0"+result.Contador);
 
         ViewData["turno"] = turno;
         var tipo = HttpContext.Request.Cookies["tipo"];
@@ -57,6 +55,12 @@ public class HomeController : Controller
         ViewData["fecha"]=Fecha;
         var Hora = DateTime.Now.ToString("HH:mm:ss");
         ViewData["hora"]=Hora;
+        var Categoria = result.Nombre;
+        ViewData["categoria"]=Categoria;
+
+        _context.Categorias.Update(result);
+        await _context.SaveChangesAsync();
+
         return View();
     }
 
