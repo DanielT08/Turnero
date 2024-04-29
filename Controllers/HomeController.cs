@@ -43,9 +43,9 @@ public class HomeController : Controller
     {
         string turno = "";
         var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
-        result.Contador = result.Contador+1;
-        turno = siglas+"-"+(result.Contador < 10 ? "00"+result.Contador: "0"+result.Contador);
-
+        int contador = result.Contador +1;
+        turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
+    //hola
         ViewData["turno"] = turno;
         var tipo = HttpContext.Request.Cookies["tipo"];
         ViewData["tipo"]=tipo;

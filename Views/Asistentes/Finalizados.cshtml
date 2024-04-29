@@ -1,8 +1,65 @@
 <div class="row">
-  <div class="col-sm-6">
-    <button>CC-1095487456</button>
-  </div>
-  <div class="col-sm-6">
-    <button>24 abril 2024 08:20:56 AM</button>
-  </div>
+    <div class="d-flex justify-content-between p-2 m-4">
+        <a type="button" style="margin-top: 30px; margin-bottom: 45px;" class="btn  bt1 btn-sm btn-primary shadow" asp-controller="Asistentes" asp-action="Principal">Gestión de turnos y citas</a>
+        <a type="button" style="margin-top: 30px; margin-bottom: 45px;" class="btn  bt2 btn-sm btn-outline-dark shadow" asp-controller="Asistentes" asp-action=""> Historial de turno</a>
+    </div>
 </div>
+
+
+<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+<label class="btn btn-outline-primary" for="btncheck3"><a style="text-decoration: none" asp-controller="Asistentes" asp-action="Todos">Todos</a></label>
+
+    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btncheck3"><a style="text-decoration: none" asp-controller="Asistentes" asp-action="Pendientes">Pendientes</a></label>
+
+    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btncheck3"><a style="text-decoration: none" asp-controller="Asistentes" asp-action="Finalizados">Finalizados</a></label>
+</div>
+
+<div>
+    <h1 class="titulo margint">Turnos del día</h1>
+</div>
+
+<table class="table table-striped">
+    
+    <thead>
+        <tr>
+        <th scope="col">Tipo de documento</th>
+        <th scope="col">Numero documento</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Turno</th>
+        <th scope="col">Hora entrada</th>
+        <th scope="col">Hora salida</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var Turno in Model){
+        <tr>
+            <td>@Turno.TipoDocumento</td>
+            <td>@Turno.identificacion</td>
+            <td>@Turno.Categoria</td>
+            <td>@Turno.Ficho</td>
+            <td>@Turno.FechaEntrada</td>
+            <td>@Turno.FechaSalida</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<style>
+    .bt1{
+    border: 2px solid black !important;
+    
+  }
+  .bt2{
+    border: 2px solid black !important;
+  }
+
+  .titulo {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 45px;
+  }
+</style>

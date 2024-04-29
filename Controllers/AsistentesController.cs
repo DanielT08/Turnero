@@ -52,20 +52,21 @@ public class AsistentesController : Controller
         return View("Index");
     }
     
-    public IActionResult Todos()
-    {
-        return View();
+    public async Task<IActionResult> Todos(){
+        return View(await _context.Turnos.ToListAsync());
     }
 
-    public IActionResult Pendientes()
-    {
-        return View();
+    public async Task<IActionResult> Pendientes(){
+        return View(await _context.Turnos.ToListAsync());
     }
-    public IActionResult Finalizados()
-    {
-        return View();
+    
+
+
+   public async Task<IActionResult> Finalizados(){
+            return View(await _context.Turnos.ToListAsync());
     }
-    public async Task <IActionResult> Principal()
+
+    public IActionResult Principal()
     {
 
         int cantidad = _context.Turnos.Count();
@@ -76,7 +77,7 @@ public class AsistentesController : Controller
         // ViewBag.Total = resultTurnos.Where(t => t.Estado.Equals("En Espera")).Count();
         // ViewBag.Pendientes = resultTurnos.Where(t => t.Estado.Equals("Pendientes")).Count();
 
-        var result =  await _context.Turnos.ToListAsync();
+        var result =   _context.Turnos.ToList();
         ViewBag.Categorias = result.Where(t => t.Estado.Equals("Pendiente"))
                                         .GroupBy(t => t.Categoria)
                                         .Select(g => new { Categoria = g.Key, Total = g.Count() })
