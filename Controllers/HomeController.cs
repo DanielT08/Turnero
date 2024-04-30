@@ -65,8 +65,12 @@ public class HomeController : Controller
     }
 
     //Daniel
-    public IActionResult Turnos()
+    public async Task<IActionResult> Turnos()
     {
+        var  result  = await _context.Turnos.ToListAsync();
+
+        ViewBag.TAtencion = result.Take(6).Where(x => x.Estado.Equals("Pendiente") );
+        //return Json(ViewBag.TAtencion);
         return View();
     } 
      public IActionResult Pausar()
