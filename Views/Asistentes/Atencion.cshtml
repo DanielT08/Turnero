@@ -1,0 +1,17 @@
+@{
+
+    ViewData["Title"] = "Atencion";
+}
+<div class="container mt-5">
+    <div class="card text-center">
+        <div class="card-body">
+            <h1 class="card-title">@ViewBag.turno.Ficho</h1>
+            <p class="card-text">@ViewBag.turno.TipoDocumento-@ViewBag.turno.Identificacion</p>
+            <p class="card-text">@ViewBag.turno.FechaEntrada</p>
+            <p class="card-text">@ViewBag.turno.FechaAtendido</p>
+
+
+            <a asp-controller="Asistentes" asp-action="Finalizar" asp-route-id="@ViewBag.turno.Id" class="btn btn-danger">Finalizar atencion</a>
+        </div>
+    </div>
+</div>

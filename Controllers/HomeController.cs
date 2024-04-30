@@ -47,6 +47,7 @@ public class HomeController : Controller
         turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
     //hola
         ViewData["turno"] = turno;
+        ViewData["siglas"] = siglas;
         var tipo = HttpContext.Request.Cookies["tipo"];
         ViewData["tipo"]=tipo;
         var documento = HttpContext.Request.Cookies["documento"];
@@ -81,6 +82,14 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Asignar(Turno turno)
     {
+
+        string siglas = turno.Categoria;
+
+        var result = await _context.Categorias.FirstOrDefaultAsync(w => w.Siglas == siglas);
+
+        turno.FechaEntrada = DateTime.Now;
+        turno.Categoria = result.Nombre;
+        turno.Estado = "Pendiente";
         _context.Turnos.Add(turno);
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");

@@ -19,6 +19,7 @@
 
 <div>
     <h1 class="titulo margint">Turnos del día</h1>
+    <h1>Modulo: @ViewBag.Modulo</h1>
 </div>
 
 <table class="table table-striped">
@@ -35,17 +36,17 @@
     </thead>
     <tbody>
 
-    @foreach (var Turno in Model){
+    @foreach (var Turno in ViewBag.Pendientes){
         <tr>
             <td>@Turno.TipoDocumento</td>
-            <td>@Turno.Ientificacion</td>
+            <td>@Turno.Identificacion</td>
             <td>@Turno.Categoria</td>
             <td>@Turno.Ficho</td>
             <td>@Turno.FechaEntrada</td>
             <td>@Turno.FechaSalida</td>
             
             <td>
-                <a class="btn btn-primary" asp-controller="Asistentes" asp-action="Pendientes">Atender</a>
+                <a class="btn btn-primary" asp-controller="Asistentes" asp-action="CambiarEstado" asp-route-turno="@Turno.Ficho" asp-route-modulo="@ViewBag.Modulo">Atender</a>
             </td>
         </tr>
     }

@@ -19,6 +19,7 @@ namespace Turnero.Models
         public DateTime? FechaAtendido {get; set;}
         public DateTime? FechaSalida {get; set;}
         public string? Estado {get; set;}
+        public string? Modulo {get; set;}
 
         // [ForeignKey ("Modulos")]
         // public int IdModulo { get; set; }
